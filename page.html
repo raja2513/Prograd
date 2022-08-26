@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet"><meta charset="UTF-8">
+ 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>CSV Downloader</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+    .bar{
+       background-color: orange;
+       margin:0px;
+       height: 50px;
+       font-size: 50px;
+       color:white;
+       font-family: 'Patrick Hand';
+       
+    }
+    .lbar{
+        background-color: orange;
+       margin:0px;
+       height: 98vmin;
+       width: 180px;
+       
+    }
+    .lbox{
+        width: 50px;
+       
+       margin:0px;
+       padding: 1%;
+       font-family: 'Lato', sans-serif;
+       font-size: 20px;
+      
+       
+    }
+    .dt{
+       
+    }
+    .i1{
+        font-size: 16px;
+        font-family: 'Lato', sans-serif;
+       
+    }
+    .table1{
+        display:inline-block;
+        background-color: rgb(246, 250, 250);
+        justify-content: center;
+        width: 1000px;
+        margin-top: 50px;
+        margin-left: 80px;
+        margin-bottom: 70px;
+    }
+    .flex-container {
+    display: flex;
+    }
+   .flex-child {
+    flex: 1;
+    border: 2px solid yellow;
+    }  
+    .flex-child:first-child {
+    margin-right: 20px;
+    } 
+    .flex-child2:first-child {
+    margin-right: 20px;
+    } 
+    table {
+    border-collapse: collapse;
+    width: 150%;
+    }
+
+  th, td {
+  text-align: left;
+  padding: 10px;
+  }
+  tr:nth-child(even){background-color: #f2f2f2}
+  th {
+  background-color:orange;
+  color: white;
+  }
+  .sl{
+    padding:20px 20px;
+    border:1px solid black;
+    width: 25px;
+    height: 25px;
+    background:orange;
+    text-align: center;
+    }
+   </style>
+
+</head>
+<body style="margin: 0px;">
+    <div class="bar">
+        <div class="box"><p style="margin:0px;">ProGrad</p></div>
+    </div>
+    
+    <div class="flex-container">
+    <div class="lbar" class="flex-child magenta">
+        <div class="lbox">
+            <p>Filter</p>
+        </div>
+       <div>
+        <input type="checkbox" value="f1" ><label for="f1" class="i1">Title</label><br><br>
+        <input type="checkbox" value="f2" class="i1"><label for="f2" class="i1">Author</label><br><br>
+        <input type="checkbox" value="f3" class="i1"><label for="f3" class="i1">Genre</label><br><br>
+        <input type="checkbox" value="f4" class="i1"><label for="f4" class="i1">Date</label><br><br>
+        <input type="checkbox" value="f4" class="i1"><label for="f4" class="i1">Height</label><br><br>
+        <input type="checkbox" value="f4" class="i1"><label for="f4" class="i1">publisher</label><br>
+       </div>
+    </div>
+    <div >  
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.js"></script>
+        <script>
+            function fun(){
+             
+            function arrayToTable(tableData) {
+                var t1=0,t2=10,t=1;
+                var table = $('<table></table>');
+                $(tableData).each(function (i, rowData) {
+                    t+=1;
+                    if(t>=t1 && t<=t2){
+                    var row = $('<tr></tr>');
+                    $(rowData).each(function (j, cellData) {
+                        row.append($('<td>'+cellData+'</td>'));
+                    });
+                    table.append(row);}
+                });
+                return table;
+           }
+            $.ajax({
+                type: "GET",
+                url: "books.csv",
+                success: function (data) {
+                    
+                    
+                    $('ppp').append(arrayToTable(Papa.parse(data).data));
+                    
+                    
+                }
+            });}
+            function fun2() {
+  $("ppp").remove();
+}
+        </script>
+        <div id="id1">
+      <ppp ></ppp></div>
+    </div>
+    
+</div>
+<biv style="margin-left:600px">
+    <biv ><button onclick="fun()" class="sl">1</button></biv>
+    <biv ><button onclick="fun2()" class="sl">1</button></biv>
+    <biv ><button onclick="fun()" class="sl">1</button></biv>
+    <biv><button onclick="fun()" class="sl">1</button></biv>
+    <biv><button onclick="fun()" class="sl">1</button></biv>
+</biv>
+
+
+
+</body>
+</html>
